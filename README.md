@@ -8,6 +8,9 @@
   * pandas: 1.1.5
   * scikit-image: 0.17.2
   * matplotlib: 3.3.2
+* Datasets:
+  * Anime Dataset: https://drive.google.com/drive/folders/1mCsY5LEsgCnc0Txv0rpAUhKVPWVkbw5I?usp=sharing
+  * Extra Data: https://drive.google.com/file/d/1tpW7ZVNosXsIAWu8-f5EpwtF3ls3pb79/view
 * Author: Wei-Yun
 * Email: rm3028@hotmail.com.tw
 * Copyright © 2021 Wei-Yun.
