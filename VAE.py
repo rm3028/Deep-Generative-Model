@@ -125,13 +125,13 @@ class VAE(torch.nn.Module):
 
     def add_noise(self, x, var):
         e = torch.randn(x.size(), device=x.device)
-        return x + torch.exp(var) * 0.5 * e
+        return x + torch.exp(var * 0.5) * e
 
-    def loss(self, mean, var):
+    def loss_kl(self, mean, var):
         return torch.sum(torch.exp(var) - (1 + var) + torch.square(mean))
 
     def forward(self, x):
         mean, var = self.encode(x)
         x = self.add_noise(mean, var)
         x = self.decode(x)
-        return x, self.loss(mean, var)
+        return x, self.loss_kl(mean, var)
