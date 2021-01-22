@@ -1,6 +1,6 @@
-# Variational Autoencoder
-* Project name: Variational-Autoencoder
-* Description: Generation of anime faces by using Variational Autoencoder (VAE).
+# Deep Generative Model
+* Project name: Deep-Generative-Model
+* Description: Generation of anime faces by using Deep-Generative-Model.
 * Libraries:
   * python: 3.8.5
   * pytorch: 1.7.0
@@ -16,5 +16,5 @@
 * Copyright © 2021 Wei-Yun.
 * All rights reserved.
 
-## Demo
+## Demo - Variational Autoencoder (VAE)
 ![image](https://github.com/rm3028/Variational-Autoencoder/blob/master/results/result_210119_1246/model/Model_210119_145259.jpg)
