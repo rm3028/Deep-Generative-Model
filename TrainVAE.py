@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     # Initalize output folder
     now = datetime.now()
-    output_folder = 'results/result_' + now.strftime("%y%m%d_%H%M")
+    output_folder = 'results/VAE_' + now.strftime("%y%m%d_%H%M")
     logPath = output_folder + '/log'
     modelPath = output_folder + '/model'
 
@@ -59,11 +59,11 @@ if __name__ == '__main__':
     dataloader = DataLoader(animeDataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
     # Initialize training
-    network = VAE(image_size, code_dim)
-    #network.load_state_dict(torch.load('results/result_210119_1246/model/Model_210119_145259.pkl'))
-    network.to(device)
+    vae = VAE(image_size, code_dim)
+    #vae.load_state_dict(torch.load('results/result_210119_1246/model/Model_210119_145259.pkl'))
+    vae.to(device)
 
-    optimizer = torch.optim.Adam(network.parameters(), lr=learning_rate)
+    optimizer = torch.optim.Adam(vae.parameters(), lr=learning_rate)
     MSELoss = torch.nn.MSELoss(reduction='sum')
 
     fig_og, axes_og = plt.subplots(1, 2)
@@ -72,14 +72,11 @@ if __name__ == '__main__':
     for epoch in range(epoch_num):
         for batch_idx, data in enumerate(dataloader):
             image = data['image']
-            tags = data['tags']
-
             image = image.to(device)
-            tags = tags.to(device)
 
             optimizer.zero_grad()
-            network.train()
-            output, loss_kl = network(image)
+            vae.train()
+            output, loss_kl = vae(image)
 
             loss_mse = MSELoss(output, image)
             loss = loss_mse + loss_kl
@@ -92,7 +89,7 @@ if __name__ == '__main__':
             axes_og[0].imshow(image[0].detach().permute(1, 2, 0).cpu().numpy())
             axes_og[0].title.set_text('Original Image')
             axes_og[1].imshow(output[0].detach().permute(1, 2, 0).cpu().numpy())
-            axes_og[1].title.set_text('Generative Image')
+            axes_og[1].title.set_text('VAE Generated Image')
             plt.show(block=False)
             plt.pause(0.001)
 
@@ -103,8 +100,8 @@ if __name__ == '__main__':
 
         modelName = GetModelName()
 
-        SaveModel(network, modelPath, modelName)
-        images = GenerateImages(network, image_num_g, code_dim)
+        SaveModel(vae, modelPath, modelName)
+        images = GenerateImages(vae, image_num_g, code_dim)
         save_image(images, modelPath + '/' + modelName + '.jpg', nrow=cols_num_g)
 
         writer.add_scalar(logPath + '/Loss', loss.item(), epoch)
@@ -112,6 +109,6 @@ if __name__ == '__main__':
         writer.add_scalar(logPath + '/Loss-KL', loss_kl.item(), epoch)
 
         grid = make_grid(images, nrow=cols_num_g)
-        writer.add_image('Generated Images', grid, epoch)
+        writer.add_image('VAE Generated Images', grid, epoch)
 
     print('Finish!')

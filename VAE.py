@@ -4,7 +4,7 @@ from torch.nn import *
 import torch.nn.functional as F
 
 class VAE(torch.nn.Module):
-    def __init__(self, imagSize, codeSize):
+    def __init__(self, imageSize, codeSize):
         super(VAE, self).__init__()
         self.block1_conv1 = Conv2d(3, 16, 3, stride=1, padding=1)
         self.block1_conv2 = Conv2d(16, 16, 3, stride=1, padding=1)
@@ -42,7 +42,7 @@ class VAE(torch.nn.Module):
         self.block8_bn1 = BatchNorm2d(16)
         self.block8_bn2 = BatchNorm2d(3)
 
-        self.featureSize = (imagSize >> 3)
+        self.featureSize = (imageSize >> 3)
 
         featureFlattenSize = 128 * self.featureSize ** 2
 
