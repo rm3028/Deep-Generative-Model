@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     # Initialize training
     gan = GAN(image_size, code_dim)
-    #gan.load_state_dict(torch.load('results/GAN_210128_1053/model/Model_210129_045458.pkl'))
+    #gan.load_state_dict(torch.load('results/GAN_210129_1028/model/Model_210130_005648.pkl'))
     gan.generator.to(device)
     gan.discriminator.to(device)
 
