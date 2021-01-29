@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     # Initialize training
     vae = VAE(image_size, code_dim)
-    #vae.load_state_dict(torch.load('results/result_210119_1246/model/Model_210119_145259.pkl'))
+    #vae.load_state_dict(torch.load('results/VAE_210119_1246/model/Model_210119_145259.pkl'))
     vae.to(device)
 
     optimizer = torch.optim.Adam(vae.parameters(), lr=learning_rate)
