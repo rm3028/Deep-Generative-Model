@@ -20,4 +20,4 @@
 ![image](https://github.com/rm3028/Deep-Generative-Model/blob/master/results/VAE_210119_1246/model/Model_210119_145259.jpg)
 
 ## Demo - Generative Adversarial Network (GAN)
-![image](https://github.com/rm3028/Deep-Generative-Model/blob/master/results/GAN_210128_1053/model/Model_210129_045458.jpg)
+![image](https://github.com/rm3028/Deep-Generative-Model/blob/master/results/GAN_210129_1028/model/Model_210130_005648.jpg)
